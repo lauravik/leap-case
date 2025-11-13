@@ -1,0 +1,47 @@
+ersion: 2
+
+models:
+  - name: stg_comments
+    description: tiktok comments 
+    columns:
+      - name: commenter_id
+        data_tests:
+          - not_null
+      - name: post_id
+        data_tests:
+          - not_null
+
+  - name: stg_posts
+    description: tiktok posts
+    columns:
+      - name: post_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_comments')
+                field: post_id
+                severity: warn
+      - name: profile_id
+        data_tests:
+          - not_null
+
+  - name: stg_profiles
+    description: tiktok profiles
+    columns:
+      - name: profile_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_posts')
+                field: profile_id
+                severity: warn
+          - relationships:
+              arguments:
+                to: ref('stg_comments')
+                field: commenter_id
+                severity: warn
+
