@@ -1,0 +1,12 @@
+SELECT
+    region,
+    COUNT(DISTINCT post_id) AS num_posts,
+    SUM(num_comments) AS num_comments,
+    SUM(num_likes) AS num_likes,
+    SUM(num_shares) AS num_shares,
+    COUNT(DISTINCT p.profile_id) AS num_profiles, 
+    SUM(total_engagement) AS total_engagement,
+    AVG(engagement_rate) AS avg_engagement_rate
+FROM {{ ref('int_post_engagement') }} AS pe
+LEFT JOIN {{ ref('stg_profiles')}} AS p ON pe.profile_id = p.profile_id
+GROUP BY region

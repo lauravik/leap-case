@@ -1,0 +1,9 @@
+version: 2
+sources:
+  - name: raw_tiktok
+    database: RAW
+    schema: TIKTOK
+    tables:
+      - name: posts
+      - name: comments
+      - name: profiles
