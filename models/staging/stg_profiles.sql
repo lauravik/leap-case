@@ -17,4 +17,3 @@ SELECT
     comment_engagement_rate,
     like_engagement_rate,
 FROM {{ source('raw_tiktok', 'profiles') }}
-WHERE id IS NOT NULL

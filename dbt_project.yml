@@ -46,7 +46,7 @@ models:
       +database: ANALYTICS
       +schema: INTERMEDIATE
     marts:
-      +materialized: incremental
+      +materialized: table
       +database: ANALYTICS
       +schema: MARTS
 
